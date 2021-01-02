@@ -10,11 +10,15 @@
   "author": "Ashraf Atef",
   "license": "ISC",
   "dependencies": {
+    "await-to-js": "^2.1.1",
     "boxen": "^4.2.0",
     "chalk": "^4.1.0",
+    "enquirer": "^2.3.6",
     "figlet": "^1.5.0",
     "inquirer": "^7.3.3",
     "listr": "^0.14.3",
+    "make-dir": "^3.1.0",
+    "node-cmd": "^4.0.0",
     "ora": "^5.1.0",
     "typescript": "^4.1.3",
     "yargs": "^16.2.0"
