@@ -1,11 +1,17 @@
 import to from 'await-to-js';
+import { YesNoInq } from '../../common/enums/shared.enum';
 import { BackendFrameworks, Caches, DatabaseEngines, MessagingBrokers, ORMs, UnitTesting } from '../enums/backend-enums';
-const { Select } = require('enquirer');
+const { Select,prompt  } = require('enquirer');
+const cmd = require('node-cmd');
+import simpleGit, {SimpleGit} from 'simple-git';
+import Commands from '../commands/commands';
+import { IBackendFrameworks } from '../interfaces/backend-commands.interface';
 
 export async function askAboutFrameworks() {
     const message = "Pick a Framework";
-    const choices = [BackendFrameworks.EPRESS, BackendFrameworks.HAPI, BackendFrameworks.NESTJS, BackendFrameworks.SALISJS]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choices = [BackendFrameworks.EXPRESS, BackendFrameworks.HAPI, BackendFrameworks.NESTJS, BackendFrameworks.SALISJS]
+    const choice: keyof IBackendFrameworks = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutDatabase() {
@@ -22,7 +28,7 @@ export async function askAboutORM() {
 
 export async function askAboutCache() {
     const message = "Pick a Cache";
-    const choices = [Caches.RIDES, Caches.MEMCACHED, Caches.DYNAMODB]
+    const choices = [Caches.RIDES, Caches.MEMCACHED]
     const choice: string = await selectSingleChoice(message, choices)
 }
 
@@ -40,14 +46,28 @@ export async function askAboutMessaging() {
 
 export async function askAboutDockerFile() {
     const message = "Pick a Database";
-    const choices = [DatabaseEngines.CASANDRA, DatabaseEngines.POSTGRES, DatabaseEngines.MONGO, DatabaseEngines.MYSQL]
+    const choices = [YesNoInq.YES, YesNoInq.NO]
     const choice: string = await selectSingleChoice(message, choices)
+    //TODO create docker file if yes
+    if (choice == YesNoInq.YES) {
+        cmd.runSync('touch Dockerfile');
+    }
 }
 
 export async function askAboutGitRepo() {
     const message = "Pick a Database";
-    const choices = [DatabaseEngines.CASANDRA, DatabaseEngines.POSTGRES, DatabaseEngines.MONGO, DatabaseEngines.MYSQL]
+    const choices = [YesNoInq.YES, YesNoInq.NO]
     const choice: string = await selectSingleChoice(message, choices)
+    // TODO check if yes create the repo
+    if (choice == YesNoInq.YES) {
+        const git = simpleGit();
+        const response = await prompt({
+            type: 'input',
+            name: 'remoteRepo',
+            message: 'What is the remote URL?'
+          });
+        git.init().addRemote("origin",`${response.remoteRepo}`)
+    }
 }
 
 async function selectSingleChoice(message: string, choices: string[]) {

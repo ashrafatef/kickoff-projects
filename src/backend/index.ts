@@ -10,8 +10,8 @@ async function backend() {
     // cmd.runSync('cd myProject');
     const framework = await askAboutFrameworks();
     commands.push(framework);
-
     const database = await askAboutDatabase()
+    commands.push(database);
 
     // console.log("Hi from backend")
 }
