@@ -5,7 +5,7 @@ const { Select,prompt  } = require('enquirer');
 const cmd = require('node-cmd');
 import simpleGit, {SimpleGit} from 'simple-git';
 import Commands from '../commands/commands';
-import { IBackendFrameworks } from '../interfaces/backend-commands.interface';
+import { IBackendFrameworks, ICache, IDatabase, IMessagingBroker, IORMs, IUnitTesting } from '../interfaces/backend-commands.interface';
 
 export async function askAboutFrameworks() {
     const message = "Pick a Framework";
@@ -17,31 +17,36 @@ export async function askAboutFrameworks() {
 export async function askAboutDatabase() {
     const message = "Pick a Database";
     const choices = [DatabaseEngines.CASANDRA, DatabaseEngines.POSTGRES, DatabaseEngines.MONGO, DatabaseEngines.MYSQL]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choice: keyof IDatabase = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutORM() {
     const message = "Pick an ORM";
     const choices = [ORMs.KENX, ORMs.SEQUELIZE, ORMs.TYPEORM]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choice: keyof IORMs = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutCache() {
     const message = "Pick a Cache";
     const choices = [Caches.RIDES, Caches.MEMCACHED]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choice: keyof ICache = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutUnitTesting() {
     const message = "Pick a Unit Testing Framework";
     const choices = [UnitTesting.JASMINE, UnitTesting.JEST, UnitTesting.MOCHA]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choice: keyof IUnitTesting = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutMessaging() {
     const message = "Pick a Messages Broker";
     const choices = [MessagingBrokers.RABBITMQ, MessagingBrokers.KAFKA]
-    const choice: string = await selectSingleChoice(message, choices)
+    const choice: keyof IMessagingBroker = await selectSingleChoice(message, choices)
+    return Commands[choice]
 }
 
 export async function askAboutDockerFile() {
