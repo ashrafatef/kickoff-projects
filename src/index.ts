@@ -25,10 +25,8 @@ const inquirer = require('inquirer');
                 figlet.textSync('Kick Off', { horizontalLayout: 'full' })
             )
         );
-        // console.log(greeting);
         const args:string[] = process.argv.slice(2);
         const projectType:string = args[0];
-        // console.log(agrs[0]);
         
         if(projectType == "-f" || projectType == "frontend"){
             frontend()
@@ -43,19 +41,3 @@ const inquirer = require('inquirer');
         });
     }
 )()
-
-
-
-
-// const questions = [
-//     {
-//         type: 'list',
-//         name: 'visibility',
-//         message: 'Public or private:',
-//         choices: ['public', 'private'],
-//         default: 'public'
-//     }
-// ];
-// inquirer.prompt(questions).then((answers:any) => {
-//     console.info('Answer:', answers);
-// });;
