@@ -1,6 +1,6 @@
 {
   "name": "project-kickoff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This Package helps everyone start his/her next project easily.",
   "main": "./dist/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "tslint -p tsconfig.json",
     "prepare": "npm run build",
     "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push --set-upstream origin master && git push --set-upstream origin master --tags"
   },
   "author": "Ashraf Atef",
   "license": "ISC",
