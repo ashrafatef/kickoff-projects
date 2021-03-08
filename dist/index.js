@@ -50,7 +50,7 @@ const args = yargs
 })
     .help().argv;
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    console.info(chalk.yellow(figlet.textSync('Kick Off', { horizontalLayout: 'full' })));
+    console.info(chalk.default.yellow(figlet.default.textSync('Kick Off', { horizontalLayout: 'full' })));
     if (args.f) {
         frontend_1.default(args.f);
     }
