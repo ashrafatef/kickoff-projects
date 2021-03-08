@@ -41,15 +41,14 @@ const args = yargs
     .option('f', {
     type: 'string',
     alias: 'frontend',
-    describe: 'provide frontend project name'
+    describe: 'provide frontend project name',
 })
     .option('b', {
     type: 'string',
     alias: 'backend',
-    describe: 'provide backend project name'
+    describe: 'provide backend project name',
 })
-    .help()
-    .argv;
+    .help().argv;
 (() => __awaiter(void 0, void 0, void 0, function* () {
     console.info(chalk.yellow(figlet.textSync('Kick Off', { horizontalLayout: 'full' })));
     if (args.f) {

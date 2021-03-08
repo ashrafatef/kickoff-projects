@@ -7,11 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "author": "Ashraf Atef",
   "license": "ISC",
   "dependencies": {
+    "@types/figlet": "^1.2.1",
     "@types/inquirer": "^7.3.1",
     "amqplib": "^0.6.0",
     "await-to-js": "^2.1.1",
@@ -47,10 +51,16 @@
     "type": "git",
     "url": "git+https://github.com/ashrafatef/kickoff-projects.git"
   },
-  "keywords": [],
+  "keywords": [
+    "setup project",
+    "start project",
+    "nodejs project"
+  ],
   "bugs": {
     "url": "https://github.com/ashrafatef/kickoff-projects/issues"
   },
   "homepage": "https://github.com/ashrafatef/kickoff-projects#readme",
-  "file": ["dist/**/*"]
+  "file": [
+    "dist/**/*"
+  ]
 }
