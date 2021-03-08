@@ -33,16 +33,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const backend_1 = __importDefault(require("./backend"));
+const frontend_1 = __importDefault(require("./frontend"));
 const yargs = __importStar(require("yargs"));
-// const yargs = require("yargs");
-const chalk = require('chalk');
-const figlet = require('figlet');
-const inquirer = require('inquirer');
-// const options = yargs
-//  .usage("Usage: -n <name>")
-//  .option("n", { alias: "name", describe: "Your name", type: "string", demandOption: true })
-//  .argv;
-// const greeting = `Hello, ${options.name}!`;
+const chalk = __importStar(require("chalk"));
+const figlet = __importStar(require("figlet"));
 const args = yargs
     .option('f', {
     type: 'string',
@@ -57,11 +51,9 @@ const args = yargs
     .help()
     .argv;
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(chalk.yellow(figlet.textSync('Kick Off', { horizontalLayout: 'full' })));
+    console.info(chalk.yellow(figlet.textSync('Kick Off', { horizontalLayout: 'full' })));
     if (args.f) {
-        // frontend(args.f)
-        console.log("Frontend Coming Soon ^-^");
-        process.exit(1);
+        frontend_1.default(args.f);
     }
     else if (args.b) {
         yield backend_1.default(args.b);

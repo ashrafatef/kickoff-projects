@@ -105,3 +105,4 @@ dist
 
 test.js
 dist
+node_modules
