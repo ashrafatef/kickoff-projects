@@ -2,8 +2,10 @@
 
 import backend from './backend';
 import frontend from './frontend';
+import * as yargs from 'yargs';
+import { describe, string } from 'yargs';
 
-const yargs = require("yargs");
+// const yargs = require("yargs");
 const chalk = require('chalk');
 const figlet = require('figlet');
 const inquirer = require('inquirer');
@@ -15,29 +17,39 @@ const inquirer = require('inquirer');
 
 // const greeting = `Hello, ${options.name}!`;
 
-
+const args = yargs
+    .option('f', {
+        type: 'string',
+        alias: 'frontend',
+        describe: 'provide frontend project name'
+    })
+    .option('b', {
+        type: 'string',
+        alias: 'backend',
+        describe: 'provide backend project name'
+    })
+    .help()
+    .argv;
 
 
 (
-    async()=>{
+    async () => {
         console.log(
             chalk.yellow(
                 figlet.textSync('Kick Off', { horizontalLayout: 'full' })
             )
         );
-        const args:string[] = process.argv.slice(2);
-        const projectType:string = args[0];
-        
-        if(projectType == "-f" || projectType == "frontend"){
-            frontend()
-        }else if(projectType == "-b" || projectType == "backend"){
-            await backend()
-        }else{
+
+        if (args.f) {
+            // frontend(args.f)
+            console.log("Frontend Coming Soon ^-^")
+            process.exit(1);
+
+        } else if (args.b) {
+             await backend(args.b)
+        } else {
             process.exit(1);
         }
-        
-        process.on('exit', function(code) {
-            return console.log(`About to exit with code ${code}`);
-        });
+        process.exit(0)
     }
 )()

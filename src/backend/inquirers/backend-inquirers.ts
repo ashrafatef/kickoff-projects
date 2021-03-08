@@ -84,7 +84,7 @@ async function selectSingleChoice(message: string, choices: string[]) {
     });
     [err, response] = await to(select.run());
     if (err) {
-        console.log("err", err)
+        console.log("err =================%%%%%%%%% ", err)
     }
     return response || "";
 }
